@@ -1,4 +1,4 @@
-import styles from "./City.module.css";
+import styles from "./modules/City.module.css";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -45,8 +45,7 @@ function City() {
         <a
           href={`https://en.wikipedia.org/wiki/${cityName}`}
           target="_blank"
-          rel="noreferrer"
-        >
+          rel="noreferrer">
           Check out {cityName} on Wikipedia &rarr;
         </a>
       </div>
