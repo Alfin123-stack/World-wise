@@ -1,7 +1,22 @@
+/* eslint-disable react/prop-types */
+import CityItem from "./CityItem";
 import styles from "./modules/CityList.module.css";
+import Spinner from "./Spinner";
+import Message from "./Message";
 
-function CityList() {
-  return <div className={styles.cityList}></div>;
+function CityList({ cities, isLoading }) {
+  return (
+    <ul className={styles.cityList}>
+      {cities.length == 0 && (
+        <Message message={"Add Your Cities by clicking the map"} />
+      )}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        cities.map((city) => <CityItem key={city.id} {...city} />)
+      )}
+    </ul>
+  );
 }
 
 export default CityList;

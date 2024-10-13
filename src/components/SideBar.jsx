@@ -11,7 +11,6 @@ function SideBar() {
 
       <Outlet />
 
-      <p>list of cities</p>
       <footer className={styles.footer}>
         <p className={styles.copyright}>
           {" "}
