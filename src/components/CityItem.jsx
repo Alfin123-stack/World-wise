@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { NavLink } from "react-router-dom";
 import styles from "./modules/CityItem.module.css";
 
 const formatDate = (date) =>
@@ -8,14 +9,16 @@ const formatDate = (date) =>
     year: "numeric",
     weekday: "long",
   }).format(new Date(date));
-function CityItem({ cityName, emoji, date }) {
+function CityItem({ cityName, emoji, date, id, position }) {
   return (
-    <li className={styles.cityItem}>
+    <NavLink
+      className={styles.cityItem}
+      to={`${id}?lat=${position.lat}&lng=${position.lng}`}>
       <span className={styles.emoji}>{emoji}</span>
       <h3 className={styles.name}>{cityName}</h3>
       <time className={styles.date}>({formatDate(date)})</time>
       <button className={styles.deleteBtn}>&times;</button>
-    </li>
+    </NavLink>
   );
 }
 

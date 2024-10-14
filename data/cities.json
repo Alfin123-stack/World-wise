@@ -1,40 +1,76 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
+      "cityName": "Paris",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2026-05-20T10:00:00.000Z",
+      "notes": "Romantic vibes everywhere! 🌹",
       "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
+        "lat": 48.8566,
+        "lng": 2.3522
       },
-      "id": 73930385
+      "id": 12345678
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
+      "cityName": "Rome",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2026-08-14T15:30:00.000Z",
+      "notes": "History and gelato in every corner! 🍦",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": 41.9028,
+        "lng": 12.4964
       },
-      "id": 17806751
+      "id": 23456789
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Amsterdam",
+      "country": "Netherlands",
+      "emoji": "🇳🇱",
+      "date": "2026-09-05T12:00:00.000Z",
+      "notes": "Charming canals and bikes everywhere! 🚴‍♂️",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": 52.3676,
+        "lng": 4.9041
       },
-      "id": 98443197
+      "id": 34567890
+    },
+    {
+      "cityName": "Tokyo",
+      "country": "Japan",
+      "emoji": "🇯🇵",
+      "date": "2027-03-18T11:15:00.000Z",
+      "notes": "A blend of tradition and modernity! 🗼",
+      "position": {
+        "lat": 35.6762,
+        "lng": 139.6503
+      },
+      "id": 45678901
+    },
+    {
+      "cityName": "Sydney",
+      "country": "Australia",
+      "emoji": "🇦🇺",
+      "date": "2027-12-01T09:00:00.000Z",
+      "notes": "The harbor is stunning! 🌊",
+      "position": {
+        "lat": -33.8688,
+        "lng": 151.2093
+      },
+      "id": 56789012
+    },
+    {
+      "cityName": "Sydney",
+      "country": "Australia",
+      "emoji": "🇦🇺",
+      "date": "2027-12-01T09:00:00.000Z",
+      "notes": "The harbor is stunning! 🌊",
+      "position": {
+        "lat": -33.8688,
+        "lng": 151.2093
+      },
+      "id": 567859012
     }
   ]
 }

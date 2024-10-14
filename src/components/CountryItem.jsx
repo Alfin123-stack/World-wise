@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import styles from "./modules/CountryItem.module.css";
 
-function CountryItem({ country }) {
+function CountryItem({ emoji, country }) {
   return (
     <li className={styles.countryItem}>
-      <span>{country.emoji}</span>
-      <span>{country.country}</span>
+      <span>{emoji}</span>
+      <span>{country}</span>
     </li>
   );
 }
