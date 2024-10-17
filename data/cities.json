@@ -59,18 +59,6 @@
         "lng": 151.2093
       },
       "id": 56789012
-    },
-    {
-      "cityName": "Sydney",
-      "country": "Australia",
-      "emoji": "🇦🇺",
-      "date": "2027-12-01T09:00:00.000Z",
-      "notes": "The harbor is stunning! 🌊",
-      "position": {
-        "lat": -33.8688,
-        "lng": 151.2093
-      },
-      "id": 567859012
     }
   ]
 }
