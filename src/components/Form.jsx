@@ -12,6 +12,10 @@ import Spinner from "./Spinner";
 import { useCities } from "./contexts/CititesContext";
 import { useNavigate } from "react-router-dom";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -111,12 +115,12 @@ function Form() {
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
 
-        {/* <DatePicker
+        <DatePicker
           id="date"
           onChange={(date) => setDate(date)}
           selected={date}
           dateFormat="dd/MM/yyyy"
-        /> */}
+        />
       </div>
 
       <div className={styles.row}>

@@ -11,7 +11,7 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 function CityItem({ cityName, emoji, date, id, position }) {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
   const isSelected = currentCity.id === id;
 
   return (
@@ -23,7 +23,15 @@ function CityItem({ cityName, emoji, date, id, position }) {
       <span className={styles.emoji}>{emoji}</span>
       <h3 className={styles.name}>{cityName}</h3>
       <time className={styles.date}>({formatDate(date)})</time>
-      <button className={styles.deleteBtn}>&times;</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          deleteCity(id);
+        }}
+        className={styles.deleteBtn}>
+        &times;
+      </button>
     </NavLink>
   );
 }
