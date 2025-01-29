@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
+import { v4 as uuidv4 } from "uuid";
+
 import { useEffect, useState } from "react";
 
 import Button from "./Button";
@@ -52,7 +54,6 @@ function Form() {
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
-          console.log(data);
 
           if (!data.countryCode)
             throw new Error(
@@ -79,6 +80,7 @@ function Form() {
     if (!cityName || !date) return;
 
     const newCity = {
+      id: uuidv4(),
       cityName,
       country,
       emoji,

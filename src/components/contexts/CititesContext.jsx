@@ -8,9 +8,11 @@ import {
   useReducer,
 } from "react";
 
+import data from "../../../data/cities.json";
+
 const CitiesContext = createContext();
 
-const BASE_URL = "http://localhost:9000/cities";
+// const BASE_URL = data;
 
 const initialState = {
   cities: [],
@@ -58,76 +60,126 @@ function CitiesProvider({ children }) {
     initialState
   );
 
-  const countries = [
-    ...new Map(
-      cities.map((item) => [item.country, { emoji: item.emoji, id: item.id }])
-    ).entries(),
-  ].map(([country, { emoji, id }]) => ({ country, emoji, id }));
+  const countries =
+    [
+      ...new Map(
+        cities.map((item) => [item.country, { emoji: item.emoji, id: item.id }])
+      ).entries(),
+    ].map(([country, { emoji, id }]) => ({ country, emoji, id })) || [];
+
+  // useEffect(function () {
+  //   async function fetchCities() {
+  //     dispatch({ type: "loading" });
+  //     try {
+  //       const response = await fetch(BASE_URL);
+  //       const data = await response.json();
+  //       dispatch({ type: "cities/loaded", payload: data });
+  //     } catch (error) {
+  //       dispatch({ type: "rejected", payload: error.message });
+  //       console.error("Error fetching cities", error);
+  //     }
+  //   }
+
+  //   fetchCities();
+  // }, []);
 
   useEffect(function () {
-    async function fetchCities() {
-      dispatch({ type: "loading" });
-      try {
-        const response = await fetch(BASE_URL);
-        const data = await response.json();
-        dispatch({ type: "cities/loaded", payload: data });
-      } catch (error) {
-        dispatch({ type: "rejected", payload: error.message });
-        console.error("Error fetching cities", error);
-      }
-    }
-
-    fetchCities();
-  }, []);
-
-  const getCity = useCallback(
-    async function getCity(id) {
-      if (Number(id) === currentCity.id) return;
-      dispatch({ type: "loading" });
-      try {
-        const response = await fetch(`${BASE_URL}/${id}`);
-        const data = await response.json();
-        dispatch({ type: "city/loaded", payload: data });
-      } catch (error) {
-        dispatch({ type: "rejected", payload: error.message });
-        console.error("Error fetching cities", error);
-      }
-    },
-    [currentCity.id]
-  );
-
-  async function createCity(newCity) {
     dispatch({ type: "loading" });
     try {
-      const response = await fetch(`${BASE_URL}`, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      dispatch({ type: "city/created", payload: data });
+      // Since we're using local data, we can directly use the imported `data`
+      dispatch({ type: "cities/loaded", payload: data.cities });
     } catch (error) {
       dispatch({ type: "rejected", payload: error.message });
-      console.error("Error fetching cities", error);
+      console.error("Error loading cities", error);
     }
-  }
-  async function deleteCity(id) {
+  }, []);
+
+  // const getCity = useCallback(
+  //   async function getCity(id) {
+  //     if (Number(id) === currentCity.id) return;
+  //     dispatch({ type: "loading" });
+  //     try {
+  //       const response = await fetch(`${BASE_URL}/${id}`);
+  //       const data = await response.json();
+  //       dispatch({ type: "city/loaded", payload: data });
+  //     } catch (error) {
+  //       dispatch({ type: "rejected", payload: error.message });
+  //       console.error("Error fetching cities", error);
+  //     }
+  //   },
+  //   [currentCity.id]
+  // );
+
+  // async function createCity(newCity) {
+  //   dispatch({ type: "loading" });
+  //   try {
+  //     const response = await fetch(`${BASE_URL}`, {
+  //       method: "POST",
+  //       body: JSON.stringify(newCity),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     dispatch({ type: "city/created", payload: data });
+  //   } catch (error) {
+  //     dispatch({ type: "rejected", payload: error.message });
+  //     console.error("Error fetching cities", error);
+  //   }
+  // }
+  // async function deleteCity(id) {
+  //   dispatch({ type: "loading" });
+  //   try {
+  //     const response = await fetch(`${BASE_URL}/${id}`, {
+  //       // Tambahkan id ke URL
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to delete the city");
+  //     }
+
+  //     dispatch({ type: "city/deleted", payload: id });
+  //   } catch (error) {
+  //     dispatch({ type: "rejected", payload: error.message });
+  //     console.error("Error deleting city", error);
+  //   }
+  // }
+
+  const getCity = useCallback(
+    function getCity(id) {
+      if (id === currentCity.id) return;
+      dispatch({ type: "loading" });
+      try {
+        const city = cities.find((city) => city.id === id); // Find the city by id
+        if (!city) {
+          throw new Error("City not found");
+        }
+        dispatch({ type: "city/loaded", payload: city });
+      } catch (error) {
+        dispatch({ type: "rejected", payload: error.message });
+        console.error("Error fetching city", error);
+      }
+    },
+    [currentCity.id, cities]
+  );
+
+  function createCity(newCity) {
     dispatch({ type: "loading" });
     try {
-      const response = await fetch(`${BASE_URL}/${id}`, {
-        // Tambahkan id ke URL
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      dispatch({ type: "city/created", payload: newCity });
+    } catch (error) {
+      dispatch({ type: "rejected", payload: error.message });
+      console.error("Error creating city", error);
+    }
+  }
 
-      if (!response.ok) {
-        throw new Error("Failed to delete the city");
-      }
-
+  function deleteCity(id) {
+    dispatch({ type: "loading" });
+    try {
       dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
       dispatch({ type: "rejected", payload: error.message });

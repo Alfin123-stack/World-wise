@@ -15,7 +15,9 @@ function CityList() {
       {isLoading ? (
         <Spinner />
       ) : (
-        cities.map((city) => <CityItem key={city.id} {...city} />)
+        cities.map((city, index) => (
+          <CityItem key={city.id || index} {...city} />
+        ))
       )}
     </ul>
   );

@@ -15,8 +15,8 @@ function CountryList() {
       {isLoading ? (
         <Spinner />
       ) : (
-        countries.map((country) => (
-          <CountryItem key={country.id} {...country} />
+        countries.map((country, index) => (
+          <CountryItem key={country.id || index} {...country} />
         ))
       )}
     </ul>
