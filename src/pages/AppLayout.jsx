@@ -1,4 +1,4 @@
-import SideBar from "../components/SIdeBar";
+import SideBar from "../components/SideBar";
 import styles from "./modules/AppLayout.module.css";
 import Map from "../components/Map";
 import { useAuth } from "../components/contexts/FakeAuthContext";
